@@ -1,11 +1,11 @@
 package TSP;
 
 public class Connection {
-    private City city;
+    private int[] cities;
     private double distance;
 
-    public Connection(City c, double d){
-        city=c;
-        distance=d;
+    public Connection(int cityA, int cityB, double d){
+        cities = new int[]{cityA,cityB};
+        distance = d;
     }
 }

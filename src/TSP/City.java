@@ -11,8 +11,8 @@ public class City {
         connections = new ArrayList<>();
     }
 
-    public void addConnection(City c, double distance){
-        connections.add(new Connection(c,distance));
+    public void addConnection(int index1, int index2, double distance){
+        connections.add(new Connection(index1, index2,distance));
     }
 
     public Connection[] getConenctions(){
@@ -20,6 +20,11 @@ public class City {
     }
 
     public String getName(){
+        return name;
+    }
+
+    @Override
+    public String toString() {
         return name;
     }
 }
