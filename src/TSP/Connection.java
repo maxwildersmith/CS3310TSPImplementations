@@ -1,5 +1,8 @@
 package TSP;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 public class Connection {
     private int[] cities;
     private double distance;
@@ -15,6 +18,13 @@ public class Connection {
 
     public int[] getCities() {
         return cities;
+    }
+
+    public double getTotalDistance(ArrayList<Connection> path){
+        double total = 0;
+        for(Connection c: path)
+            total+=c.distance;
+        return total;
     }
 
     @Override

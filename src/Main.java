@@ -1,3 +1,4 @@
+import BruteForce.BruteForce;
 import TSP.City;
 import TSP.Connection;
 
@@ -51,9 +52,10 @@ public class Main {
         if(cities==null)
             return;
 
+        BruteForce bf = new BruteForce(cities);
+        bf.run();
 
-
-        printCityConnections(cities);
+        //printCityConnections(cities);
     }
 
     private static void printCityConnections(ArrayList<City> cities){
