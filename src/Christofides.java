@@ -26,7 +26,6 @@ public class Christofides
 		ArrayList<Integer> visited = new ArrayList();
 		ArrayList<Integer> unvisited = new ArrayList();
 		double[] distances = new double[length];
-		int[] edges = new int[length];
 		for(int i = 1; i<length; i++)
 		{
 			unvisited.add(i);
