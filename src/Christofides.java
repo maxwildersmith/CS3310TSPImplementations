@@ -54,7 +54,8 @@ public class Christofides
 			unvisited.remove(end);
 			distances[visited.size()]=min;
 		}
-		return visited.toArray(finalPath);
+		finalPath = visited.toArray(finalPath);
+		return finalPath;
 	}
 	
 	/**
