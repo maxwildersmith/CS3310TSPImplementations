@@ -1,5 +1,5 @@
 Los Angeles, New York, Las Vegas, San Francisco
-0 400 40 200
+0 400 360 200
 400 0 250 300
 360 250 0 200
-200 300 100 0
+200 300 200 0
