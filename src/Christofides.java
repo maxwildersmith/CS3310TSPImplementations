@@ -11,6 +11,7 @@ public class Christofides
 	public Christofides(TSP tsp)
 	{
 		this.tsp = tsp;
+		finalPath = new Integer[tsp.getSize()];
 	}
 
 
@@ -77,11 +78,12 @@ public class Christofides
 	 */
 	public int[] getPath()
 	{
-		int[] path = new int[finalPath.length];
+		int[] path = new int[finalPath.length+1];
 		for(int i = 0; i<finalPath.length; i++)
 		{
 			path[i]=finalPath[i];
 		}
+		path[finalPath.length]=0;
 		return path;
 	}
 }
