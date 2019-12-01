@@ -50,9 +50,9 @@ public class Christofides
 					}
 				}
 			}
+			distances[visited.size()]=min;
 			visited.add(unvisited.get(end));
 			unvisited.remove(end);
-			distances[visited.size()]=min;
 		}
 		finalPath = visited.toArray(finalPath);
 		return finalPath;
