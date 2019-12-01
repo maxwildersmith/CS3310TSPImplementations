@@ -12,7 +12,7 @@ public class Christofides
 	{
 		this.tsp = tsp;
 	}
-}
+
 
 	/**
 	 * Uses Prim's Algorithm to find the Minimum Spanning Tree and record the order in
@@ -41,7 +41,7 @@ public class Christofides
 				for(int j = 0; j<unvisited.size(); j++)
 				{
 					int finish = unvisited.get(j);
-					int dist = tsp.getDistance(start, finish);
+					double dist = tsp.getDistance(start, finish);
 					dist+=distances[i];
 					if(dist<min)
 					{
@@ -68,7 +68,7 @@ public class Christofides
 		{
 			dist+=tsp.getDistance(finalPath[i],finalPath[i+1]);
 		}
-		return dist+=tsp.getDistance(finalPath[finalPath.length-1,0]);
+		return dist+=tsp.getDistance(finalPath[finalPath.length-1],0);
 	}	
 	
 	/**
