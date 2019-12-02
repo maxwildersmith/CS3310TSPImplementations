@@ -1,5 +1,6 @@
 package TSP;
 
+import java.awt.event.MouseAdapter;
 import java.util.Arrays;
 
 public class TSP {
@@ -30,6 +31,25 @@ public class TSP {
             out+=", "+cities[i];
         }
         return out.substring(2);
+    }
+
+    public static TSP autoGenerate(int size){
+        int[] x = new int[size];
+        int[] y = new int[size];
+        String[] names = new String[size];
+        for(int i=0;i<size;i++){
+            names[i]=i+1+"";
+            x[i] = (int)(Math.random()*size*2);
+            y[i] = (int)(Math.random()*size*2);
+        }
+        double[][] distances = new double[size][size];
+        for(int i=0;i<size;i++){
+            for(int j=0;j<size;j++){
+                distances[i][j]= Math.hypot(x[i]-x[j],y[i]-y[j]);
+            }
+        }
+
+        return new TSP(names,distances);
     }
 
     public void printCities(){

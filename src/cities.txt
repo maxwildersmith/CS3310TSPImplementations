@@ -1,4 +1,4 @@
-Los Angelas,New York,Las Vegas,San Francisco
+Los Angeles,New York,Las Vegas,San Francisco
 0 400 40 200
 400 0 250 300
 40 250 0 100
