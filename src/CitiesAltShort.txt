@@ -1,4 +1,4 @@
 Los Angelas, New York, Las Vegas
-0 100 260
+0 40 260
 40 0 300
-200 300 0
+260 300 0
