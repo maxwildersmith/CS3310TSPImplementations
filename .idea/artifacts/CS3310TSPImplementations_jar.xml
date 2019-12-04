@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="CS3310TSPImplementations:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/CS3310TSPImplementations_jar</output-path>
+    <root id="archive" name="CS3310TSPImplementations.jar">
+      <element id="module-output" name="CS3310TSPImplementations" />
+    </root>
+  </artifact>
+</component>

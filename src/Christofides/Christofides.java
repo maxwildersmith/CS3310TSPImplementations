@@ -59,7 +59,7 @@ public class Christofides
 		finalPath = visited.toArray(finalPath);
 		return finalPath;
 	}
-	
+
 	/**
 	 * Calculates the distance between the nodes in FinalPath and sums them all up
 	 * @return Distance of the path
@@ -72,8 +72,8 @@ public class Christofides
 			dist+=tsp.getDistance(finalPath[i],finalPath[i+1]);
 		}
 		return dist+=tsp.getDistance(finalPath[finalPath.length-1],0);
-	}	
-	
+	}
+
 	/**
 	 * @return int[] representing the shortest path
 	 */

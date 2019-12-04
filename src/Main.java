@@ -27,35 +27,43 @@ public class Main {
 
         if(auto) {
             System.out.println("Enter max time in seconds: ");
-            long maxTime = in.nextLong()*1000;
-            long bfTime = 0, cTime = 0;
-            int size = 3;
+            long maxTime = (long)(in.nextDouble()*1000);
+            long bfTime = 0, cTime = 0, start, end;
+            int size = 5;
             boolean runBf = true;
+
             ArrayList<Long> sizes = new ArrayList<>();
             ArrayList<Long> bfTimes = new ArrayList<>();
             ArrayList<Long> cTimes = new ArrayList<>();
             while(bfTime<maxTime*.75&&cTime<maxTime*.75){
-                tsp = TSP.autoGenerate(size);
-                sizes.add((long)size);
-                Christofides c = new Christofides(tsp);
-                long start = System.currentTimeMillis();
-                c.run();
-                long end = System.currentTimeMillis();
-                cTime=end-start;
-                if(print)
-                    System.out.println("Optimal path with Christofides of size "+tsp.getSize()+" in " +cTime);//+ tsp.pathToNames(c.getPath())+" with distance of "+c.getDistance()+" in "+(end-start))
-                cTimes.add(cTime);
+                try {
+                    tsp = TSP.autoGenerate(size);
+                    sizes.add((long) size);
+                    Christofides c = new Christofides(tsp);
+                    start = System.currentTimeMillis();
+                    c.run();
+                    end = System.currentTimeMillis();
+                    cTime = end - start;
+                    if (print)
+                        System.out.println("Optimal path with Christofides of size " + tsp.getSize() + " in " + cTime);
+                    cTimes.add(cTime);
+                }catch (OutOfMemoryError e){
+                    System.out.println("Out of memory");
+                    bfTime=maxTime*2;
+                }
 
+                sizes.add((long) size);
                 if(runBf) {
                     try {
+                        tsp = TSP.autoGenerate(size);
                         System.gc();
                         BruteForce bf = new BruteForce(tsp);
                         start = System.currentTimeMillis();
                         bf.run();
                         end = System.currentTimeMillis();
-                        if(print)
-                            System.out.println("Optimal path with brute force: " + tsp.pathToNames(bf.getPath())+" with distance of "+bf.getDistance()+" in "+(end-start));
                         bfTime = end - start;
+                        if(print)
+                            System.out.println("Optimal path with brute force: size "+tsp.getSize()+" in "+(bfTime));
                         bfTimes.add(bfTime);
                     } catch (OutOfMemoryError e){
                         System.out.println("Out of heap space for brute force");
@@ -65,8 +73,7 @@ public class Main {
                 } else {
                     bfTimes.add((long) -1);
                 }
-
-                size*=5;
+                size+=1;
             }
             createCSV("BruteForce.csv",sizes,bfTimes);
             createCSV("Christofides.csv",sizes,cTimes);
@@ -99,6 +106,10 @@ public class Main {
 
     }
 
+    /**
+     * Creates a TSP based on user input.
+     * @return The TSP generated based on what the user requested
+     */
     private static TSP userInput(){
         Scanner in = new Scanner(System.in);
         boolean done = false;
@@ -126,6 +137,10 @@ public class Main {
         return new TSP(cities.toArray(String[]::new),distances);
     }
 
+    /**
+     * Launches the JFileChooser, and lets the user select a file to load in cities from
+     * @return The TSP that is generated from the file
+     */
     private static TSP readFromFile(){
         JFileChooser fileChooser = new JFileChooser(System.getProperty("java.class.path"));
         fileChooser.setFileFilter(new FileNameExtensionFilter("txt files","txt"));
