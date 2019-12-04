@@ -4,10 +4,9 @@ import TSP.TSP;
 
 import java.util.ArrayList;
 
-public class Christofides 
+public class Christofides
 {
 	TSP tsp;
-	double finalDistance;
 	Integer[] finalPath;
 	
 	public Christofides(TSP tsp)
@@ -25,8 +24,8 @@ public class Christofides
 	public Integer[] run()
 	{
 		int length = tsp.getSize();
-		ArrayList<Integer> visited = new ArrayList();
-		ArrayList<Integer> unvisited = new ArrayList();
+		ArrayList<Integer> visited = new ArrayList<>();
+		ArrayList<Integer> unvisited = new ArrayList<>();
 		double[] distances = new double[length];
 		for(int i = 1; i<length; i++)
 		{

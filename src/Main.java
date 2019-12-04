@@ -16,16 +16,13 @@ import java.util.Scanner;
 public class Main {
 
 
-    public static final boolean print = true, auto=true;
+    public static final boolean print = true;
     public static void main(String[] args) {
-        System.out.println("Creating a Travelling Salesman Problem with the brute force solution");
-        System.out.println("Creating cities...");
         TSP tsp = null;
-
         Scanner in = new Scanner(System.in);
+        System.out.println("Run auto-generated TSP problems for timing? (y/n):");
 
-
-        if(auto) {
+        if(in.next().trim().toLowerCase().charAt(0)=='y') {
             System.out.println("Enter max time in seconds: ");
             long maxTime = (long)(in.nextDouble()*1000);
             long bfTime = 0, cTime = 0, start, end;
@@ -77,33 +74,32 @@ public class Main {
             }
             createCSV("BruteForce.csv",sizes,bfTimes);
             createCSV("Christofides.csv",sizes,cTimes);
-            return;
-        }
-
-        System.out.println("Load cities from file?");
-        if('y'!=in.nextLine().trim().toLowerCase().charAt(0)) {
-            tsp = userInput();
         } else {
-            tsp = readFromFile();
+            in = new Scanner(System.in);
+            System.out.println("Load cities from file? (y/n)");
+            if ('y' != in.nextLine().trim().toLowerCase().charAt(0)) {
+                tsp = userInput();
+            } else {
+                tsp = readFromFile();
+            }
+            if (tsp == null)
+                System.err.println("Matrix improperly configured.");
+
+            tsp.printCities();
+            tsp.printDistances();
+
+            BruteForce bf = new BruteForce(tsp);
+            long start = System.currentTimeMillis();
+            bf.run();
+            long end = System.currentTimeMillis();
+            System.out.println("Optimal path from brute force: " + tsp.pathToNames(bf.getPath()) + " with distance of " + bf.getDistance() + " in " + (end - start)+"ms");
+
+            Christofides c = new Christofides(tsp);
+            start = System.currentTimeMillis();
+            c.run();
+            end = System.currentTimeMillis();
+            System.out.println("Optimal path from Christofides: " + tsp.pathToNames(c.getPath()) + " with distance of " + c.getDistance() + " in " + (end - start)+"ms");
         }
-        if(tsp==null)
-            System.err.println("Matrix improperly configured.");
-
-        tsp.printCities();
-        tsp.printDistances();
-
-        BruteForce bf = new BruteForce(tsp);
-        long start = System.currentTimeMillis();
-        bf.run();
-        long end = System.currentTimeMillis();
-        System.out.println("Optimal path: " + tsp.pathToNames(bf.getPath())+" with distance of "+bf.getDistance()+" in "+(end-start));
-
-        Christofides c = new Christofides(tsp);
-        start = System.currentTimeMillis();
-        c.run();
-        end = System.currentTimeMillis();
-        System.out.println("Optimal path: " + tsp.pathToNames(c.getPath())+" with distance of "+c.getDistance()+" in "+(end-start));
-
     }
 
     /**

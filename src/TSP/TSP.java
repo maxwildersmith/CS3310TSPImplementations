@@ -1,6 +1,5 @@
 package TSP;
 
-import java.awt.event.MouseAdapter;
 import java.util.Arrays;
 
 public class TSP {
@@ -27,7 +26,7 @@ public class TSP {
 
     /**
      * Returns the number of cities, i.e. the size of the scenario
-     * @return
+     * @return The size of the TSP scenario based on the number of cities
      */
     public int getSize(){
         return cities.length;

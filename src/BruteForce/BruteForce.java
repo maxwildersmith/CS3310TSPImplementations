@@ -9,6 +9,10 @@ public class BruteForce {
     double finalDistance;
     int[] finalPath;
 
+    /**
+     * Constructs a Brute Force based approach for a TSP problem with the given distance matrix.
+     * @param tsp The TSP scenario
+     */
     public BruteForce(TSP tsp){
         this.tsp = tsp;
     }
@@ -34,10 +38,18 @@ public class BruteForce {
         return paths.get(shortestIndex);
     }
 
+    /**
+     * Returns the final optimal path
+     * @return An int[] representing the optimal path
+     */
     public int[] getPath(){
         return finalPath;
     }
 
+    /**
+     * Returns the optimal distance
+     * @return The optimal distance from the optimal path
+     */
     public double getDistance(){
         return finalDistance;
     }
