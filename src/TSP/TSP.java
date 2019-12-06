@@ -50,9 +50,10 @@ public class TSP {
     public String pathToNames(int[] path){
         String out = "";
         for(int i: path){
-            out+=", "+cities[i];
+            out+=cities[i]+", ";
         }
-        return out.substring(2);
+        out+=cities[path[0]];
+        return out;
     }
 
     /**

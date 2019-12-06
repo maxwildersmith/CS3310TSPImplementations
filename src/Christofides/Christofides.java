@@ -78,12 +78,11 @@ public class Christofides
 	 */
 	public int[] getPath()
 	{
-		int[] path = new int[finalPath.length+1];
+		int[] path = new int[finalPath.length];
 		for(int i = 0; i<finalPath.length; i++)
 		{
 			path[i]=finalPath[i];
 		}
-		path[finalPath.length]=0;
 		return path;
 	}
 }

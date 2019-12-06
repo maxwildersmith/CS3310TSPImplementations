@@ -1,4 +1,0 @@
-Los Angelas,Las Vegas,San Francisco
-0 40 200
-40 0 300
-200 300 0
